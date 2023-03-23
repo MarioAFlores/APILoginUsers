@@ -13,5 +13,6 @@ namespace APILoginUsers.Models
         public string Mail { get; set; }
         public string User_Name { get; set; }
         public string Password { get; set;}
+        public int Fk_User_Role { get; set; }
     }
 }

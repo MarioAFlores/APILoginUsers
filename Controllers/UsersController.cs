@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APILoginUsers.Context;
 using APILoginUsers.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APILoginUsers.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -25,6 +27,8 @@ namespace APILoginUsers.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> Getusers()
         {
+            var user = HttpContext.User?.Identity?.Name ?? "N/A";
+            //var users = HttpContext.User;
             return await _context.users.ToListAsync();
         }
 
@@ -32,6 +36,7 @@ namespace APILoginUsers.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(int id)
         {
+            
             var users = await _context.users.FindAsync(id);
 
             if (users == null)

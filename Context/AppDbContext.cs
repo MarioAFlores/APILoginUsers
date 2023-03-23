@@ -11,6 +11,7 @@ namespace APILoginUsers.Context
         }
 
         public DbSet<Users> users { get; set; }
+        public DbSet<User_Role> user_Roles { get; set; }
 
     }
 }
